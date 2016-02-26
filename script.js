@@ -14,7 +14,7 @@ function addBox() {
     myNewBox.addEventListener('mouseover', mouseEnter);
     myNewBox.addEventListener('mouseleave', mouseLeave);
     myNewBox.addEventListener('dblclick', removeBox);
-        function removeBox() {
+        function removeBox(e) {
             var x = myNewBox.id;
 //        console.log('text string blah blah  ' + x);
 
@@ -24,7 +24,8 @@ function addBox() {
         else if (x % 2 === 0) {
             //console.log('This is Even')
             //document.removeNextsibling;
-            document.body.removeChild;
+            e.nextElementSibling.removeChild();
+
         }
         else {
             console.log('This is Odd')
