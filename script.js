@@ -11,9 +11,6 @@ function addBox() {
     var divNumber = String(document.getElementsByClassName('myBox').length);
     divNumber = parseInt(divNumber, 10);
     myNewBox.id = divNumber;
-    var thisBoxNumber = divNumber;
-    var nextBoxNumber = (divNumber + 1);
-    var prevBoxNumber = (divNumber - 1);
     myNewBox.className = 'myBox';
     myNewBox.addEventListener('click', getRandomColor);
     myNewBox.addEventListener('mouseover', mouseEnter);
@@ -24,44 +21,38 @@ function addBox() {
     function mouseLeave(e) {
         e.target.innerHTML = "";
     }
-    myNewBox.addEventListener('dblclick', function () {
-        removeBox();
-        resetBoxId();
-    });    
-    //    Save below, this is if I go back to a single remove box function -----------
-    //    myNewBox.addEventListener('dblclick', removeBox);
-    //    Save above ------------
-    
-    function removeBox() {
-        if (thisBoxNumber < 1) {
+    myNewBox.addEventListener('dblclick', function (e) {
+        var dblClickedBox = e.target; //this calls the e as the target.
+        var x = dblClickedBox.id;
+            if (x === '0') {
             alert('There is no element to remove');
-        }
-        else if (thisBoxNumber % 2 === 0) {
-            document.getElementById(nextBoxNumber).remove();
-        }
-        else {
-            document.getElementById(prevBoxNumber).remove();
-        }
-    }
+            }
+            else if (x % 2 === 0) {
+                if (dblClickedBox.nextElementSibling === null) {
+                    alert('No Element to remove');
+                    return;
+                }
+                e.target.nextElementSibling.remove();
+                // console.log('remove right');
+            }
+            else {
+                if (dblClickedBox.previousElementSibling.className === 'myButton'){
+                    alert('No Element to Remove');
+                    return;
+                }
+
+                e.target.previousElementSibling.remove();
+    });    
+
     function resetBoxId() {
         //console.log('trying to reset box id');
         
         var x = document.getElementsByClassName('myBox');
-        var y = x.innerHTML;
+        //var y = x.innerHTML;
             for (var i = 0; i < x.length; i++) {
-                console.log(x[i]);
-            }
-
-        //var boxId = document.getElementsByClassName('myBox');
-        //myBox[0].style.color = 'green';
-        
-        // new goal, to build an array of remaining box numbers, then print numbers to console.log
-        
-        
-        
-        
+                console.log(x[i].id);
+            } 
     }
-
     document.body.appendChild(myNewBox);
 }
 
