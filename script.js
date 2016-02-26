@@ -12,43 +12,39 @@ function addBox() {
     myNewBox.className = 'myBox';
     myNewBox.addEventListener('click', getRandomColor);
     myNewBox.addEventListener('mouseover', mouseEnter);
+        function mouseEnter(e) {
+        e.target.innerHTML = e.target.id;
+    }
     myNewBox.addEventListener('mouseleave', mouseLeave);
+        function mouseLeave(e) {
+        e.target.innerHTML = "";
+    }
     myNewBox.addEventListener('dblclick', removeBox);
         function removeBox() {
             var x = myNewBox.id;
             x = parseInt(x, 10);
-            
         if (x < 1) {
-            console.log('This is Zero');
+            alert('There is no element to remove');  // console.log('This is Zero');
         }
         else if (x % 2 === 0) {
-            var y = (x + 1);
-            //console.log('this is an addition test  ' + y)
-            document.getElementById(y).remove();
-
-            // console.log('This is Even')
-            // alert(document.getElementById("x").previousSibling.id); //returns null
-            //document.removeNextsibling;
-            //e.nextElementSibling.removeChild();
-
+            var y = (x + 1);   //console.log('this is an addition test  ' + y)
+            document.getElementById(y).remove();  // console.log('This is Even')
         }
         else {
             var y = (x - 1);
-            document.getElementById(y).remove();
-            //console.log('This is Odd' + y)
+            document.getElementById(y).remove();  //console.log('This is Odd' + y)
         }
     }
-    
     document.body.appendChild(myNewBox);
 }
 
-function mouseEnter(e) {
-    e.target.innerHTML = e.target.id;
-}
-
-function mouseLeave(e) {
-    e.target.innerHTML = "";
-}
+// function mouseEnter(e) {
+//     e.target.innerHTML = e.target.id;
+// }
+// 
+// function mouseLeave(e) {
+//     e.target.innerHTML = "";
+// }
 
 function getRandomColor(e) {
     var letters = '0123456789ABCDEF'.split('');
