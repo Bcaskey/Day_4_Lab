@@ -6,45 +6,57 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.appendChild(myTopButton)});
 
 function addBox() {
-    var divNumber = String(document.getElementsByClassName('myBox').length);
     var myNewBox = document.createElement('div');
+    var divNumber = String(document.getElementsByClassName('myBox').length);
+        divNumber = parseInt(divNumber, 10);
     myNewBox.id=divNumber;
+    var thisBoxNumber = divNumber;
+    var nextBoxNumber = (divNumber + 1);
+    var prevBoxNumber = (divNumber - 1);
     myNewBox.className = 'myBox';
     myNewBox.addEventListener('click', getRandomColor);
     myNewBox.addEventListener('mouseover', mouseEnter);
         function mouseEnter(e) {
         e.target.innerHTML = e.target.id;
-    }
+        }
     myNewBox.addEventListener('mouseleave', mouseLeave);
         function mouseLeave(e) {
         e.target.innerHTML = "";
     }
+//    myNewBox.addEventListener('dblclick', function () {
+//        removeBox();
+//        resetBoxId();
+//    });    
+//    Save below -----------
     myNewBox.addEventListener('dblclick', removeBox);
+//    Save above ------------
+    
         function removeBox() {
-            var x = myNewBox.id;
-            x = parseInt(x, 10);
-        if (x < 1) {
-            alert('There is no element to remove');  // console.log('This is Zero');
-        }
-        else if (x % 2 === 0) {
-            var y = (x + 1);   //console.log('this is an addition test  ' + y)
-            document.getElementById(y).remove();  // console.log('This is Even')
-        }
-        else {
-            var y = (x - 1);
-            document.getElementById(y).remove();  //console.log('This is Odd' + y)
-        }
-    }
+                if (thisBoxNumber < 1) {
+                    alert('There is no element to remove');
+                }
+                else if (thisBoxNumber % 2 === 0) {
+                    document.getElementById(nextBoxNumber).remove();
+                    var newDivNumber = String(document.getElementsByTagName('div').length);
+                    newDivNumber = parseInt(newDivNumber, 10);
+                }
+                else {
+                    document.getElementById(prevBoxNumber).remove();
+                    var newDivNumber = String(document.getElementsByTagName('div').length);
+                    newDivNumber = parseInt(newDivNumber, 10);
+                }
+            divNumber = newDivNumber;
+            }
+//    function resetBoxId () {
+//            // console.log('trying to reset box id');
+//            var getDiv = document.getElementsByTagName ('div')[0].setAtribute('id');
+//            console.log(getDiv);
+//    }
+
+        
+    
     document.body.appendChild(myNewBox);
 }
-
-// function mouseEnter(e) {
-//     e.target.innerHTML = e.target.id;
-// }
-// 
-// function mouseLeave(e) {
-//     e.target.innerHTML = "";
-// }
 
 function getRandomColor(e) {
     var letters = '0123456789ABCDEF'.split('');
