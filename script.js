@@ -14,21 +14,28 @@ function addBox() {
     myNewBox.addEventListener('mouseover', mouseEnter);
     myNewBox.addEventListener('mouseleave', mouseLeave);
     myNewBox.addEventListener('dblclick', removeBox);
-        function removeBox(e) {
+        function removeBox() {
             var x = myNewBox.id;
-//        console.log('text string blah blah  ' + x);
-
+            x = parseInt(x, 10);
+            
         if (x < 1) {
             console.log('This is Zero');
         }
         else if (x % 2 === 0) {
-            //console.log('This is Even')
+            var y = (x + 1);
+            //console.log('this is an addition test  ' + y)
+            document.getElementById(y).remove();
+
+            // console.log('This is Even')
+            // alert(document.getElementById("x").previousSibling.id); //returns null
             //document.removeNextsibling;
-            e.nextElementSibling.removeChild();
+            //e.nextElementSibling.removeChild();
 
         }
         else {
-            console.log('This is Odd')
+            var y = (x - 1);
+            document.getElementById(y).remove();
+            //console.log('This is Odd' + y)
         }
     }
     
