@@ -37,7 +37,7 @@ function addBox() {
             }
             else {
                 if (dblClickedBox.previousElementSibling.className === 'myButton'){
-                    alert('No Element to Remove');
+                    alert('Please leave the button);
                     return;
                 }
 
