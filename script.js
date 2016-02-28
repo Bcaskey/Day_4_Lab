@@ -21,29 +21,30 @@ function addBox() {
     function mouseLeave(e) {
         e.target.innerHTML = "";
     }
-    myNewBox.addEventListener('dblclick', function (e) {
+    myNewBox.addEventListener('dblclick', function (e) { //open event listener
         var dblClickedBox = e.target; //this calls the e as the target.
         var x = dblClickedBox.id;
             if (x === '0') {
             alert('There is no element to remove');
             }
-            else if (x % 2 === 0) {
-                if (dblClickedBox.nextElementSibling === null) {
+            else if (x % 2 === 0) { //open else if
+                if (dblClickedBox.nextElementSibling === null) { //open nested if
                     alert('No Element to remove');
-                    return;
-                }
-                e.target.nextElementSibling.remove();
+                    return; //return returns me to the prior statement
+                    } //closes nested if
+                //console.log("latest test line 35");
+            e.target.nextElementSibling.remove(); //function of else if, assuming if not true
                 // console.log('remove right');
-            }
-            else {
-                if (dblClickedBox.previousElementSibling.className === 'myButton'){
-                    alert('Please leave the button);
+            } // close else if statement
+            else { //open else
+                //console.log("line 40 test");
+                if (dblClickedBox.previousElementSibling.className === 'myButton'){ //open nested if
+                    alert('Please leave the button');
                     return;
-                }
-
-                e.target.previousElementSibling.remove();
-    });    
-
+                    } //closes nested if
+            e.target.previousElementSibling.remove(); //function of else
+            } //close else
+    }); //close event listener
     function resetBoxId() {
         //console.log('trying to reset box id');
         
@@ -55,7 +56,6 @@ function addBox() {
     }
     document.body.appendChild(myNewBox);
 }
-
 function getRandomColor(e) {
     var letters = '0123456789ABCDEF'.split('');
     var color = '#';
